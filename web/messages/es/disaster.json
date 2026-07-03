@@ -1,0 +1,40 @@
+{
+  "trigger": {
+    "title": "Simular Desastre Climatico",
+    "description": "Simula un evento climatico extremo detectado por el oraculo.",
+    "buttonLabel": "Simular Desastre"
+  },
+  "modal": {
+    "title": "ALERTA: Desastre Climatico",
+    "warning1": "El oraculo climatico ha detectado condiciones de helada severa.",
+    "warning2": "Se congelara el contrato de escrow de forma inmediata.",
+    "warning3": "Las fases pendientes quedaran bloqueadas permanentemente.",
+    "warning4": "Se activara el Fondo de Rescate Parametrico para proteger al agricultor.",
+    "confirm": "Confirmar Desastre",
+    "confirmCountdown": "Confirmar ({seconds})",
+    "cancel": "Cancelar"
+  },
+  "frozen": {
+    "bannerTitle": "CONTRATO CONGELADO",
+    "bannerDescription": "Desastre climatico detectado — Los fondos pendientes han sido bloqueados por el oraculo.",
+    "rescueFund": "Fondo de Rescate Parametrico activado"
+  },
+  "resolve": {
+    "title": "Fondo de Rescate Parametrico",
+    "description": "Distribuye los fondos restantes: 30% rescate al agricultor, 70% reembolso al exportador.",
+    "buttonLabel": "Resolver Desastre",
+    "remaining": "Saldo restante",
+    "rescueAmount": "Rescate agricultor (30%)",
+    "exporterRefund": "Reembolso exportador (70%)",
+    "confirm": "Confirmar Resolucion",
+    "confirmCountdown": "Confirmar ({seconds})",
+    "cancel": "Cancelar",
+    "success": "Desastre resuelto — fondos distribuidos"
+  },
+  "progress": {
+    "signing": "Firmando transaccion del oraculo...",
+    "sending": "Enviando trigger_disaster...",
+    "confirming": "Esperando confirmacion on-chain..."
+  },
+  "error": "Ocurrio un error inesperado"
+}

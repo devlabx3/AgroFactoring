@@ -1,0 +1,46 @@
+{
+  "title": "Panel Principal",
+  "metrics": {
+    "totalInCustody": "Total en Custodia",
+    "currentPhase": "Fase Actual",
+    "status": "Estado",
+    "cropType": "Cultivo",
+    "estimatedTons": "Toneladas Estimadas",
+    "counterpart": "Contraparte",
+    "fundsReceived": "Fondos Recibidos",
+    "myCrop": "Mi Cultivo",
+    "variety": "Variedad",
+    "ofPhases": "de {total}",
+    "released": "liberado",
+    "createdAt": "Fecha de Creacion",
+    "contractId": "ID Contrato",
+    "totalReleased": "Total Liberado",
+    "ofTotal": "de {total}"
+  },
+  "contract": {
+    "noContract": "No hay contrato activo",
+    "noContractDesc": "No se encontro un contrato asociado a tu cuenta.",
+    "notInitialized": "Contrato sin inicializar",
+    "notInitializedDesc": "El contrato aun no ha sido inicializado en la blockchain.",
+    "initializeContract": "Inicializar Contrato",
+    "selectContract": "Seleccionar contrato"
+  },
+  "emulator": {
+    "title": "Emulador",
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "timeLeft": "{minutes} min restantes",
+    "start": "Iniciar",
+    "stop": "Detener",
+    "disabled": "Deshabilitado"
+  },
+  "error": {
+    "title": "Error al cargar datos",
+    "description": "No se pudo obtener la informacion del dashboard.",
+    "retry": "Reintentar"
+  },
+  "empty": {
+    "noData": "Sin datos disponibles",
+    "phase2": "Dashboard completo en Fase 2"
+  }
+}

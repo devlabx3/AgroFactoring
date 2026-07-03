@@ -1,0 +1,43 @@
+{
+  "title": "Emulador Agronomico",
+  "description": "Simula el paso del tiempo para avanzar las fases del contrato.",
+  "status": {
+    "active": "Activo",
+    "inactive": "Inactivo",
+    "disabled": "Deshabilitado"
+  },
+  "timeLeft": "{minutes} min restantes",
+  "actions": {
+    "start": "Iniciar Emulador",
+    "stop": "Detener Emulador",
+    "starting": "Iniciando...",
+    "stopping": "Deteniendo..."
+  },
+  "frozenWarning": "El emulador esta deshabilitado porque el contrato esta congelado.",
+  "autoStopped": "El emulador se detuvo automaticamente al alcanzar el limite de tiempo.",
+  "weather": {
+    "title": "Datos Climaticos",
+    "temperature": "Temperatura (°C)",
+    "rainfall": "Precipitacion (mm)",
+    "submit": "Registrar Lectura",
+    "success": "Lectura registrada",
+    "autoActive": "Generando cada 60s"
+  },
+  "iot": {
+    "title": "Sensores IoT",
+    "ndvi": "NDVI Index (0-1)",
+    "soilMoisture": "Humedad Suelo (%)",
+    "submit": "Registrar Lectura",
+    "success": "Lectura IoT registrada",
+    "autoActive": "Generando cada 60s"
+  },
+  "reset": {
+    "button": "Reiniciar Contrato",
+    "description": "Elimina el registro on-chain, el ledger y reinicia las fases desde cero.",
+    "confirm": "Reiniciar",
+    "confirmCountdown": "Espera ({seconds})",
+    "success": "Contrato reiniciado",
+    "resetting": "Reiniciando..."
+  },
+  "error": "Ocurrio un error inesperado"
+}

@@ -1,0 +1,16 @@
+{
+  "title": "Profile",
+  "sectionTitle": "User information",
+  "username": "Username",
+  "usernameHint": "Username cannot be changed",
+  "fullName": "Full name",
+  "fullNamePlaceholder": "e.g. John Doe",
+  "email": "Email",
+  "emailPlaceholder": "example@email.com",
+  "walletAddress": "Wallet address",
+  "walletPlaceholder": "G...",
+  "walletHint": "Stellar address (starts with G). The exporter uses Freighter when signing on-chain; the farmer uses this address to receive USDC.",
+  "save": "Save changes",
+  "saving": "Saving...",
+  "saved": "Profile updated successfully"
+}

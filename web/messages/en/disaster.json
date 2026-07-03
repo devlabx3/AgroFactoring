@@ -1,0 +1,40 @@
+{
+  "trigger": {
+    "title": "Simulate Climate Disaster",
+    "description": "Simulates an extreme climate event detected by the oracle.",
+    "buttonLabel": "Simulate Disaster"
+  },
+  "modal": {
+    "title": "ALERT: Climate Disaster",
+    "warning1": "The climate oracle has detected severe frost conditions.",
+    "warning2": "The escrow contract will be frozen immediately.",
+    "warning3": "Pending phases will be permanently locked.",
+    "warning4": "The Parametric Rescue Fund will be activated to protect the farmer.",
+    "confirm": "Confirm Disaster",
+    "confirmCountdown": "Confirm ({seconds})",
+    "cancel": "Cancel"
+  },
+  "frozen": {
+    "bannerTitle": "CONTRACT FROZEN",
+    "bannerDescription": "Climate disaster detected — Pending funds have been locked by the oracle.",
+    "rescueFund": "Parametric Rescue Fund activated"
+  },
+  "resolve": {
+    "title": "Parametric Rescue Fund",
+    "description": "Distributes the remaining funds: 30% rescue to the farmer, 70% refund to the exporter.",
+    "buttonLabel": "Resolve Disaster",
+    "remaining": "Remaining balance",
+    "rescueAmount": "Farmer rescue (30%)",
+    "exporterRefund": "Exporter refund (70%)",
+    "confirm": "Confirm Resolution",
+    "confirmCountdown": "Confirm ({seconds})",
+    "cancel": "Cancel",
+    "success": "Disaster resolved — funds distributed"
+  },
+  "progress": {
+    "signing": "Signing oracle transaction...",
+    "sending": "Sending trigger_disaster...",
+    "confirming": "Waiting for on-chain confirmation..."
+  },
+  "error": "An unexpected error occurred"
+}

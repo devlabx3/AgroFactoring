@@ -1,0 +1,54 @@
+{
+  "balance": {
+    "title": "Available Balance",
+    "available": "Available for withdrawal",
+    "released": "Total Released",
+    "withdrawn": "Total Withdrawn",
+    "withdraw": "Withdraw Funds",
+    "noFunds": "No funds available",
+    "frozenWarning": "Withdrawals disabled — contract frozen"
+  },
+  "modal": {
+    "title": "Withdraw Funds",
+    "transferNotice": "On-chain USDC transfer to your wallet",
+    "amount": "Amount to withdraw",
+    "amountPlaceholder": "0.00",
+    "amountMax": "Maximum: {max}",
+    "bank": "Destination bank",
+    "bankPlaceholder": "Select bank",
+    "accountLast4": "Last 4 digits of account",
+    "accountLast4Placeholder": "1234",
+    "confirm": "Confirm Withdrawal",
+    "processing": "Processing transfer...",
+    "processingDesc": "Sending USDC from the contract to your Stellar wallet",
+    "success": "Withdrawal Successful",
+    "successDesc": "{amount} USDC transferred to your wallet ({bank} ****{last4})",
+    "viewOnExplorer": "View transaction on Stellar Explorer",
+    "error": "Withdrawal Failed",
+    "retry": "Retry"
+  },
+  "history": {
+    "title": "Withdrawal History",
+    "empty": "No withdrawals recorded",
+    "date": "Date",
+    "amount": "Amount",
+    "bank": "Bank",
+    "account": "Account",
+    "txHash": "Tx Hash",
+    "status": "Status",
+    "completed": "Completed",
+    "failed": "Failed"
+  },
+  "errors": {
+    "noFunds": "No funds available for withdrawal",
+    "txFailed": "The on-chain transaction failed"
+  },
+  "validation": {
+    "amountRequired": "Amount is required",
+    "amountMin": "Minimum amount is $1",
+    "amountMax": "Amount exceeds available balance",
+    "bankRequired": "Please select a bank",
+    "accountRequired": "Last 4 digits are required",
+    "accountLength": "Must be exactly 4 digits"
+  }
+}

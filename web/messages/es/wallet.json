@@ -1,0 +1,28 @@
+{
+  "connect": "Conectar Billetera",
+  "disconnect": "Desconectar",
+  "connected": "Conectada",
+  "connecting": "Conectando...",
+  "notInstalled": "Freighter no instalado",
+  "notInstalledDesc": "Instala la extension Freighter para firmar transacciones.",
+  "installLink": "Instalar Freighter",
+  "wrongNetwork": "Red incorrecta",
+  "wrongNetworkDesc": "Cambia a Testnet en Freighter para continuar.",
+  "switchNetwork": "Cambiar a Testnet",
+  "rejected": "Firma rechazada por el usuario",
+  "address": "Direccion",
+  "network": "Red",
+  "tx": {
+    "preparing": "Preparando transaccion...",
+    "simulating": "Simulando en Soroban...",
+    "signing": "Esperando firma en billetera...",
+    "submitting": "Enviando transaccion...",
+    "confirming": "Esperando confirmacion on-chain...",
+    "confirmed": "Transaccion confirmada",
+    "error": "Error en la transaccion",
+    "hash": "Hash de la transaccion",
+    "viewExplorer": "Ver en Stellar Explorer",
+    "retry": "Reintentar",
+    "close": "Cerrar"
+  }
+}

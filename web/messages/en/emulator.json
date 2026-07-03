@@ -1,0 +1,43 @@
+{
+  "title": "Agronomic Emulator",
+  "description": "Simulates the passage of time to advance contract phases.",
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive",
+    "disabled": "Disabled"
+  },
+  "timeLeft": "{minutes} min remaining",
+  "actions": {
+    "start": "Start Emulator",
+    "stop": "Stop Emulator",
+    "starting": "Starting...",
+    "stopping": "Stopping..."
+  },
+  "frozenWarning": "The emulator is disabled because the contract is frozen.",
+  "autoStopped": "The emulator was automatically stopped after reaching the time limit.",
+  "weather": {
+    "title": "Weather Data",
+    "temperature": "Temperature (°C)",
+    "rainfall": "Rainfall (mm)",
+    "submit": "Record Reading",
+    "success": "Reading recorded",
+    "autoActive": "Auto-generating every 60s"
+  },
+  "iot": {
+    "title": "IoT Sensors",
+    "ndvi": "NDVI Index (0-1)",
+    "soilMoisture": "Soil Moisture (%)",
+    "submit": "Record Reading",
+    "success": "IoT reading recorded",
+    "autoActive": "Auto-generating every 60s"
+  },
+  "reset": {
+    "button": "Reset Contract",
+    "description": "Removes the on-chain record, the ledger, and restarts phases from scratch.",
+    "confirm": "Reset",
+    "confirmCountdown": "Wait ({seconds})",
+    "success": "Contract reset",
+    "resetting": "Resetting..."
+  },
+  "error": "An unexpected error occurred"
+}

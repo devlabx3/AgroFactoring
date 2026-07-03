@@ -1,0 +1,21 @@
+{
+  "title": "Sign In",
+  "subtitle": "Enter your credentials to access",
+  "username": "Username",
+  "usernamePlaceholder": "Enter your username",
+  "password": "Password",
+  "passwordPlaceholder": "Enter your password",
+  "submit": "Sign In",
+  "submitting": "Signing in...",
+  "demo": {
+    "title": "Demo users",
+    "exporter": "Exporter",
+    "farmer": "Farmer"
+  },
+  "errors": {
+    "usernameRequired": "Username is required",
+    "passwordRequired": "Password is required",
+    "invalidCredentials": "Invalid credentials",
+    "serverError": "Server error. Please try again."
+  }
+}

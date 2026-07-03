@@ -1,0 +1,20 @@
+{
+  "notFound": {
+    "title": "Pagina no encontrada",
+    "description": "La pagina que buscas no existe o fue movida.",
+    "backToDashboard": "Volver al panel principal"
+  },
+  "generic": {
+    "title": "Algo salio mal",
+    "description": "Ocurrio un error inesperado.",
+    "retry": "Reintentar"
+  },
+  "network": {
+    "title": "Error de conexion",
+    "description": "No se pudo conectar con el servidor."
+  },
+  "unauthorized": {
+    "title": "Sesion expirada",
+    "description": "Tu sesion ha expirado. Inicia sesion de nuevo."
+  }
+}

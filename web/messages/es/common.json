@@ -1,0 +1,39 @@
+{
+  "appName": "AgroFactoring",
+  "nav": {
+    "dashboard": "Panel Principal",
+    "contract": "Contrato",
+    "emulator": "Emulador",
+    "data": "Datos",
+    "myCrop": "Mi Cultivo",
+    "withdrawal": "Retiros",
+    "profile": "Perfil",
+    "logout": "Cerrar Sesion"
+  },
+  "roles": {
+    "exporter": "Exportador",
+    "farmer": "Agricultor"
+  },
+  "actions": {
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "confirm": "Confirmar",
+    "retry": "Reintentar",
+    "close": "Cerrar",
+    "back": "Volver",
+    "submit": "Enviar",
+    "loading": "Cargando..."
+  },
+  "status": {
+    "notInitialized": "Sin inicializar",
+    "active": "Activo",
+    "frozen": "Congelado",
+    "resolved": "Congelado",
+    "completed": "Completado"
+  },
+  "language": {
+    "es": "ES",
+    "en": "EN",
+    "switchTo": "Cambiar idioma"
+  }
+}

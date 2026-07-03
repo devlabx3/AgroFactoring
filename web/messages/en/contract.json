@@ -1,0 +1,33 @@
+{
+  "init": {
+    "title": "Initialize Contract",
+    "description": "USDC will be deposited into the Soroban smart escrow. Funds will be released phase by phase to the farmer.",
+    "summary": "Contract Summary",
+    "cropType": "Crop Type",
+    "variety": "Variety",
+    "totalAmount": "Total Amount",
+    "phaseBreakdown": "Phase Breakdown",
+    "phase": "Phase",
+    "amount": "Amount",
+    "connectWalletFirst": "Connect your wallet to continue",
+    "confirm": "Initialize Contract",
+    "confirming": "Initializing..."
+  },
+  "release": {
+    "title": "Release Phase {phase}",
+    "description": "USDC funds will be released to the farmer for the selected phase.",
+    "question": "Release Phase {phase}: {name}?",
+    "amount": "Amount to release",
+    "recipient": "Recipient",
+    "recipientWallet": "Farmer wallet",
+    "confirm": "Release Funds",
+    "confirming": "Releasing..."
+  },
+  "status": {
+    "notInitialized": "Contract not initialized",
+    "active": "Contract active",
+    "frozen": "Contract frozen",
+    "resolved": "Contract frozen",
+    "completed": "Contract completed"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "connect": "Connect Wallet",
+  "disconnect": "Disconnect",
+  "connected": "Connected",
+  "connecting": "Connecting...",
+  "notInstalled": "Freighter not installed",
+  "notInstalledDesc": "Install the Freighter extension to sign transactions.",
+  "installLink": "Install Freighter",
+  "wrongNetwork": "Wrong network",
+  "wrongNetworkDesc": "Switch to Testnet in Freighter to continue.",
+  "switchNetwork": "Switch to Testnet",
+  "rejected": "Signature rejected by user",
+  "address": "Address",
+  "network": "Network",
+  "tx": {
+    "preparing": "Preparing transaction...",
+    "simulating": "Simulating on Soroban...",
+    "signing": "Waiting for wallet signature...",
+    "submitting": "Submitting transaction...",
+    "confirming": "Waiting for on-chain confirmation...",
+    "confirmed": "Transaction confirmed",
+    "error": "Transaction error",
+    "hash": "Transaction hash",
+    "viewExplorer": "View on Stellar Explorer",
+    "retry": "Retry",
+    "close": "Close"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "title": "Dashboard",
+  "metrics": {
+    "totalInCustody": "Total in Custody",
+    "currentPhase": "Current Phase",
+    "status": "Status",
+    "cropType": "Crop",
+    "estimatedTons": "Estimated Tons",
+    "counterpart": "Counterpart",
+    "fundsReceived": "Funds Received",
+    "myCrop": "My Crop",
+    "variety": "Variety",
+    "ofPhases": "of {total}",
+    "released": "released",
+    "createdAt": "Created Date",
+    "contractId": "Contract ID",
+    "totalReleased": "Total Released",
+    "ofTotal": "of {total}"
+  },
+  "contract": {
+    "noContract": "No active contract",
+    "noContractDesc": "No contract found associated with your account.",
+    "notInitialized": "Contract not initialized",
+    "notInitializedDesc": "The contract has not been initialized on the blockchain yet.",
+    "initializeContract": "Initialize Contract",
+    "selectContract": "Select contract"
+  },
+  "emulator": {
+    "title": "Emulator",
+    "active": "Active",
+    "inactive": "Inactive",
+    "timeLeft": "{minutes} min remaining",
+    "start": "Start",
+    "stop": "Stop",
+    "disabled": "Disabled"
+  },
+  "error": {
+    "title": "Failed to load data",
+    "description": "Could not fetch dashboard information.",
+    "retry": "Retry"
+  },
+  "empty": {
+    "noData": "No data available",
+    "phase2": "Full dashboard in Phase 2"
+  }
+}

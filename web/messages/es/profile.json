@@ -1,0 +1,16 @@
+{
+  "title": "Perfil",
+  "sectionTitle": "Datos del usuario",
+  "username": "Usuario",
+  "usernameHint": "El usuario no se puede cambiar",
+  "fullName": "Nombre completo",
+  "fullNamePlaceholder": "Ej: Juan Perez",
+  "email": "Correo",
+  "emailPlaceholder": "ejemplo@correo.com",
+  "walletAddress": "Direccion de la wallet",
+  "walletPlaceholder": "G...",
+  "walletHint": "Direccion Stellar (empieza con G). El exportador usa Freighter al firmar on-chain; el agricultor usa esta direccion para recibir USDC.",
+  "save": "Guardar cambios",
+  "saving": "Guardando...",
+  "saved": "Perfil actualizado correctamente"
+}

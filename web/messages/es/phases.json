@@ -1,0 +1,54 @@
+{
+  "title": "Fases del Contrato",
+  "names": {
+    "0": "Rescate desastre",
+    "1": "Adecuacion",
+    "2": "Siembra",
+    "3": "Levante",
+    "4": "Cosecha",
+    "5": "Despacho"
+  },
+  "descriptions": {
+    "1": "Preparación del terreno, análisis de suelo, adquisición de insumos y adecuación de infraestructura de riego.",
+    "2": "Establecimiento del cultivo, siembra de semillas o plántulas y aplicación de fertilización base.",
+    "3": "Mantenimiento del cultivo, control de plagas, fertilización de crecimiento y monitoreo de desarrollo.",
+    "4": "Recolección del producto, control de calidad post-cosecha y preparación para almacenamiento.",
+    "5": "Empaque, logística de transporte y entrega del producto al exportador según contrato."
+  },
+  "status": {
+    "completed": "Completada",
+    "current": "Fase Actual",
+    "pending": "Pendiente",
+    "frozen": "Congelada"
+  },
+  "timeline": {
+    "title": "Progreso de Fases",
+    "phase": "Fase {number}",
+    "budgeted": "Presupuestado",
+    "released": "Liberado"
+  },
+  "ledger": {
+    "title": "Registro de Liberaciones",
+    "phase": "Fase",
+    "name": "Nombre",
+    "amountReleased": "Monto Liberado",
+    "date": "Fecha",
+    "txHash": "Hash Tx",
+    "empty": "No hay liberaciones registradas",
+    "viewOnExplorer": "Ver en Stellar Explorer"
+  },
+  "detail": {
+    "title": "Detalle por Fase",
+    "description": "Descripción",
+    "releasedOn": "Liberado el",
+    "txHash": "Transacción",
+    "remaining": "Restante por liberar",
+    "cumulative": "Acumulado liberado",
+    "ofTotal": "del total",
+    "noDetails": "Fondos aún no liberados para esta fase"
+  },
+  "actions": {
+    "releasePhase": "Liberar Fase {number}",
+    "releaseFunds": "Liberar Fondos"
+  }
+}

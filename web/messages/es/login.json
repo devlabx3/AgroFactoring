@@ -1,0 +1,21 @@
+{
+  "title": "Iniciar Sesion",
+  "subtitle": "Ingresa tus credenciales para acceder",
+  "username": "Usuario",
+  "usernamePlaceholder": "Ingresa tu usuario",
+  "password": "Contrasena",
+  "passwordPlaceholder": "Ingresa tu contrasena",
+  "submit": "Iniciar Sesion",
+  "submitting": "Iniciando sesion...",
+  "demo": {
+    "title": "Usuarios de prueba",
+    "exporter": "Exportador",
+    "farmer": "Agricultor"
+  },
+  "errors": {
+    "usernameRequired": "El usuario es obligatorio",
+    "passwordRequired": "La contrasena es obligatoria",
+    "invalidCredentials": "Credenciales invalidas",
+    "serverError": "Error del servidor. Intenta de nuevo."
+  }
+}

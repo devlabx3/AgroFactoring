@@ -1,0 +1,33 @@
+{
+  "init": {
+    "title": "Inicializar Contrato",
+    "description": "Se depositara USDC en el escrow inteligente de Soroban. Los fondos se liberaran fase por fase al agricultor.",
+    "summary": "Resumen del Contrato",
+    "cropType": "Tipo de Cultivo",
+    "variety": "Variedad",
+    "totalAmount": "Monto Total",
+    "phaseBreakdown": "Desglose por Fases",
+    "phase": "Fase",
+    "amount": "Monto",
+    "connectWalletFirst": "Conecta tu billetera para continuar",
+    "confirm": "Inicializar Contrato",
+    "confirming": "Inicializando..."
+  },
+  "release": {
+    "title": "Liberar Fase {phase}",
+    "description": "Se liberaran fondos USDC al agricultor para la fase seleccionada.",
+    "question": "Liberar Fase {phase}: {name}?",
+    "amount": "Monto a liberar",
+    "recipient": "Destinatario",
+    "recipientWallet": "Billetera del agricultor",
+    "confirm": "Liberar Fondos",
+    "confirming": "Liberando..."
+  },
+  "status": {
+    "notInitialized": "Contrato sin inicializar",
+    "active": "Contrato activo",
+    "frozen": "Contrato congelado",
+    "resolved": "Contrato congelado",
+    "completed": "Contrato completado"
+  }
+}

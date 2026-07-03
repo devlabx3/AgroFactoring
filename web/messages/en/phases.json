@@ -1,0 +1,54 @@
+{
+  "title": "Contract Phases",
+  "names": {
+    "0": "Disaster rescue",
+    "1": "Preparation",
+    "2": "Sowing",
+    "3": "Growing",
+    "4": "Harvest",
+    "5": "Dispatch"
+  },
+  "descriptions": {
+    "1": "Land preparation, soil analysis, input procurement and irrigation infrastructure setup.",
+    "2": "Crop establishment, seed or seedling planting and base fertilization application.",
+    "3": "Crop maintenance, pest control, growth fertilization and development monitoring.",
+    "4": "Product harvesting, post-harvest quality control and storage preparation.",
+    "5": "Packaging, transport logistics and product delivery to the exporter per contract."
+  },
+  "status": {
+    "completed": "Completed",
+    "current": "Current Phase",
+    "pending": "Pending",
+    "frozen": "Frozen"
+  },
+  "timeline": {
+    "title": "Phase Progress",
+    "phase": "Phase {number}",
+    "budgeted": "Budgeted",
+    "released": "Released"
+  },
+  "ledger": {
+    "title": "Release Ledger",
+    "phase": "Phase",
+    "name": "Name",
+    "amountReleased": "Amount Released",
+    "date": "Date",
+    "txHash": "Tx Hash",
+    "empty": "No releases recorded",
+    "viewOnExplorer": "View on Stellar Explorer"
+  },
+  "detail": {
+    "title": "Phase Detail",
+    "description": "Description",
+    "releasedOn": "Released on",
+    "txHash": "Transaction",
+    "remaining": "Remaining to release",
+    "cumulative": "Cumulative released",
+    "ofTotal": "of total",
+    "noDetails": "Funds not yet released for this phase"
+  },
+  "actions": {
+    "releasePhase": "Release Phase {number}",
+    "releaseFunds": "Release Funds"
+  }
+}
