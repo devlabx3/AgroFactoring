@@ -1,0 +1,41 @@
+---
+config:
+  layout: elk
+---
+graph TD
+    A([init: exportador deposita USDC total])
+    B[Activo<br/>current_phase = 0]
+    C[Activo - Fase 1 Liberada<br/>Adecuación]
+    D[Activo - Fase 2 Liberada<br/>Siembra]
+    E[Activo - Fase 3 Liberada<br/>Levante]
+    F[Activo - Fase 4 Liberada<br/>Cosecha]
+    G[Activo - Fase 5 Liberada<br/>Despacho]
+    H([Completado<br/>todas las fases liberadas])
+    I([Congelado<br/>desastre climático])
+    J([init:<br/>+ Botón: Simular helada])
+
+    A -->|release_phase 1| C
+    B -->|release_phase 1| C
+    C -->|release_phase 2| D
+    D -->|release_phase 3| E
+    E -->|release_phase 4| F
+    F -->|release_phase 5| G
+    G -->|última fase| H
+    B -->|trigger_disaster| I
+    C -->|trigger_disaster| I
+    D -->|trigger_disaster| I
+    E -->|trigger_disaster| I
+    F -->|trigger_disaster| I
+    G -->|trigger_disaster| I
+    J -.->|admin/oráculo| I
+    I -.->|sin liberaciones| I
+
+    classDef active fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    classDef done fill:#c8e6c9,stroke:#1b5e20,stroke-width:3px
+    classDef frozen fill:#bbdefb,stroke:#0d47a1,stroke-width:3px
+    classDef start fill:#fff9c4,stroke:#f57f17
+
+    class B,C,D,E,F,G active
+    class H done
+    class I,J frozen
+    class A start

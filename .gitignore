@@ -1,0 +1,13 @@
+# web: dependencias y variables de entorno
+web/node_modules/
+web/.env
+web/.env.*
+!web/.env.example
+
+# Stellar: build artifacts
+Stellar/target/
+
+# Agro_Factoring: snapshots de tests
+Stellar/contracts/Agro_Factoring/test_snapshots/
+
+.env

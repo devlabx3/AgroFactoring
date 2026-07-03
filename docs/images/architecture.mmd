@@ -1,0 +1,42 @@
+---
+config:
+  layout: elk
+---
+graph TD
+    Exp[Exportador Miami/Brasil]
+    Agr[Agricultor Colombia]
+    SC["Smart Contract Soroban<br/>AgroFactoring"]
+    ApiSat["Oráculo Satelital API<br/>Sentinel Hub / NDVI"]
+    ApiClima["Oráculo Climático API<br/>IDEAM / OpenWeather"]
+    Gateway["Anchor / Fiat Gateway<br/>Bitso, Airtm, Transak"]
+    Nequi["Cuenta Agricultor<br/>Nequi / Banco / COP"]
+    Rescue["Fondo de Rescate Paramétrico<br/>Reembolso Exportador / Quema Deuda"]
+    DB[("Supabase Postgres<br/>perfiles, cultivos, contratos,<br/>fases, lecturas clima/IoT, ledger")]
+    Web["Frontend Web<br/>Next.js + Freighter"]
+
+    Exp -->|1. Deposita USDC total en escrow| SC
+    SC -->|2. Libera Fase 1 inmediata| Agr
+    ApiSat -->|3. Verifica avance de fase| SC
+    SC -->|4. Desbloquea siguiente fase| Agr
+    ApiClima -->|5. Detecta helada/sequía| SC
+    SC -->|6. Congela escrow de fases futuras| Rescue
+    Agr -->|7. Retira USDC desbloqueado| Gateway
+    Gateway -->|8. Conversión y transferencia| Nequi
+    Web -->|REST / Soroban RPC| SC
+    Web -->|Supabase JS| DB
+    ApiSat -.->|lecturas| DB
+    ApiClima -.->|lecturas| DB
+
+    classDef smartContract fill:#2d2d5e,stroke:#7f7ff5,stroke-width:3px,color:#fff
+    classDef oracles fill:#e1f5fe,stroke:#0288d1,stroke-width:2px
+    classDef fiat fill:#e8f5e9,stroke:#388e3c,stroke-width:2px
+    classDef rescue fill:#ffebee,stroke:#c62828,stroke-width:2px
+    classDef db fill:#fff8e1,stroke:#f9a825,stroke-width:2px
+    classDef web fill:#f3e5f5,stroke:#8e24aa,stroke-width:2px
+
+    class SC smartContract
+    class ApiSat,ApiClima oracles
+    class Gateway,Nequi fiat
+    class Rescue rescue
+    class DB db
+    class Web web

@@ -1,0 +1,34 @@
+---
+config:
+  layout: elk
+---
+sequenceDiagram
+    participant E as Exportador
+    participant SC as Smart Contract<br/>Soroban
+    participant O as Oráculo Satelital<br/>(NDVI)
+    participant A as Agricultor
+    participant DB as Supabase
+
+    E->>SC: init(farmer, crop_id, total,<br/>amount_per_phase)
+    SC->>SC: transfiere USDC total a custodia<br/>status = Active, phase = 0
+    SC->>A: libera Fase 1 (Adecuación)<br/>USDC amount_per_phase
+    SC->>DB: phase_ledger.insert(tx_hash, 1)
+
+    Note over O: Periodicamente el oráculo<br/>calcula NDVI en las<br/>coordenadas GPS de la finca
+    O->>SC: verificación avance de fase
+    SC->>A: libera Fase 2 (Siembra)
+    SC->>DB: phase_ledger.insert(tx_hash, 2)
+
+    O->>SC: verificación avance de fase
+    SC->>A: libera Fase 3 (Levante)
+    SC->>DB: phase_ledger.insert(tx_hash, 3)
+
+    O->>SC: verificación avance de fase
+    SC->>A: libera Fase 4 (Cosecha)
+    SC->>DB: phase_ledger.insert(tx_hash, 4)
+
+    O->>SC: verificación avance de fase
+    SC->>A: libera Fase 5 (Despacho)
+    SC->>SC: released == total<br/>status = Completed
+    SC->>E: exportador recibe pago con intereses
+    SC->>DB: phase_ledger.insert(tx_hash, 5)

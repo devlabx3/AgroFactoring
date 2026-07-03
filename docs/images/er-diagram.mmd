@@ -1,0 +1,71 @@
+---
+config:
+  layout: elk
+---
+erDiagram
+    profiles ||--o{ crops : "farmer_id"
+    profiles ||--o{ contracts : "exporter_id"
+    crops ||--o{ contracts : "crop_id"
+    crops ||--o{ crop_phases_budget : "crop_id"
+    contracts ||--o{ phase_ledger : "contract_id"
+    contracts ||--o{ weather_readings : "contract_id"
+    contracts ||--o{ iot_readings : "contract_id"
+
+    profiles {
+        uuid id PK
+        text  role
+        text  username
+        text  password
+        text  wallet_address
+    }
+    crops {
+        uuid    id PK
+        uuid    farmer_id FK
+        text    crop_type
+        text    variety
+        numeric estimated_tons
+        numeric total_funding_requested
+        text    status
+        bigint  crop_id_num
+    }
+    crop_phases_budget {
+        uuid    id PK
+        uuid    crop_id FK
+        integer phase_number
+        text    phase_name
+        numeric amount_requested
+    }
+    contracts {
+        uuid    id PK
+        uuid    crop_id FK
+        uuid    exporter_id FK
+        numeric total_amount
+        integer current_phase
+        text    status
+        text    stellar_contract_id
+        bool    emulator_active
+        timestamptz emulator_started_at
+        timestamptz created_at
+    }
+    phase_ledger {
+        uuid    id PK
+        uuid    contract_id FK
+        integer phase_number
+        text    tx_hash
+        numeric amount_released
+        timestamptz timestamp
+    }
+    weather_readings {
+        uuid    id PK
+        uuid    contract_id FK
+        timestamptz timestamp
+        float8  temperature_c
+        float8  rainfall_mm
+    }
+    iot_readings {
+        uuid    id PK
+        uuid    contract_id FK
+        timestamptz timestamp
+        float8  ndvi_index
+        float8  soil_moisture
+    }

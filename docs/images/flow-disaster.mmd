@@ -1,0 +1,30 @@
+---
+config:
+  layout: elk
+---
+sequenceDiagram
+    participant A as Agricultor<br/>(Dashboard)
+    participant W as Web API<br/>(Node.js)
+    participant O as Oráculo Climático<br/>(OpenWeather/IDEAM)
+    participant DB as Supabase
+    participant SC as Smart Contract<br/>Soroban
+    participant E as Exportador
+
+    A->>W: POST /api/data/weather<br/>{ temperature_c, contract_id }
+    W->>DB: weather_readings.insert<br/>{ contract_id, temperature_c }
+    W->>W: detecta temp < 2°C por > 4h<br/>= TRIGGER de helada
+
+    A->>W: "Simular Desastre Climático"
+    W->>SC: trigger_disaster(exporter,<br/>farmer, crop_id)
+    Note over SC: Firma oráculo (admin)<br/>+ simulation + sendTransaction
+    SC-->>W: SUCCESS, tx_hash
+    SC->>SC: status = FROZEN<br/>fases 3,4,5 congeladas
+    SC->>SC: quema 30% deuda generada<br/>deuda $1000 -> $700
+    SC->>SC: libera Fondo de Rescate<br/>$300 USDC al agricultor
+    W->>DB: contracts.update(status='frozen')
+
+    par impactos simultaneos
+        Note over A: Deuda baja de $1000 a $700<br/>Fondo de Rescate activado $300<br/>Fases 3-5 congeladas (azul)
+    and
+        Note over E: En Escrow $3000 -><br/>Reembolso (azul pulsante)<br/>Retorno recalculado<br/>Alerta de impacto
+    end

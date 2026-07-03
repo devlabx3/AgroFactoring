@@ -1,0 +1,73 @@
+---
+config:
+  layout: elk
+---
+graph TD
+    subgraph Cliente[Capa Cliente]
+        FE[Web Frontend<br/>Next.js 16 + React 19<br/>Tailwind v4]
+        FW[Freighter Wallet<br/>Firma del exportador]
+    end
+
+    subgraph Blockchain[Capa Blockchain - Stellar]
+        SC[Smart Contract Soroban<br/>Agro_Factoring.rs<br/>Escrow por fases]
+        USDC[USDC Stellar Asset<br/>Testnet]
+    end
+
+    subgraph Oraculos[Capa Oraculos - Backend]
+        WEATHER[API OpenWeatherMap<br/>+ IDEAM Colombia]
+        SAT[API Sentinel Hub<br/>NDVI satelital]
+        PHOTO[Evidencia Fotográfica<br/>Georeferenciada]
+    end
+
+    subgraph Datos[Capa Datos - Supabase]
+        PG[(Postgres<br/>perfiles, cultivos,<br/>contratos, ledger,<br/>weather, iot)]
+        AUTH[Auth jose JWT]
+    end
+
+    subgraph Fiat[Capa Fiat - Ultima Milla]
+        TRANSAK[Transak Widget<br/>MVP Hackathon]
+        BITSO[Bitso API<br/>Produccion v1]
+        ANCHOR[Anchor SEP-24<br/>Escala]
+    end
+
+    subgraph Agricola[Capa Agricola]
+        FARM[Finca Agricultor<br/>GPS lat/long]
+    end
+
+    FE -->|Soroban RPC + SDK 16| SC
+    FE --> FW
+    FW -->|firma tx| SC
+    SC --> USDC
+
+    WEATHER -->|API pull| PG
+    SAT -->|API pull| PG
+    PHOTO -->|upload| PG
+    WEATHER -->|trigger helada| FE
+    SAT -->|trigger avance fase| FE
+
+    FE -->|supabase-js| PG
+    FE --> AUTH
+
+    FE --> TRANSAK
+    FE --> BITSO
+    FE --> ANCHOR
+    TRANSAK -->|USDC -> COP| FARM
+    BITSO -->|USDC -> COP PSE/ACH| FARM
+    ANCHOR -->|SEP-24 COP automatico| FARM
+
+    FARM -.->|coordenadas GPS| WEATHER
+    FARM -.->|coordenadas GPS| SAT
+
+    classDef cliente fill:#f3e5f5,stroke:#8e24aa
+    classDef bc fill:#2d2d5e,stroke:#7f7ff5,color:#fff
+    classDef oracle fill:#e1f5fe,stroke:#0288d1
+    classDef db fill:#fff8e1,stroke:#f9a825
+    classDef fiat fill:#e8f5e9,stroke:#388e3c
+    classDef farm fill:#fff3e0,stroke:#ef6c00
+
+    class FE,FW cliente
+    class SC,USDC bc
+    class WEATHER,SAT,PHOTO oracle
+    class PG,AUTH db
+    class TRANSAK,BITSO,ANCHOR fiat
+    class FARM farm
