@@ -240,7 +240,7 @@ stellar contract deploy \
 
 # configure the USDC testnet address
 stellar contract invoke \
-  --id <CONTRACT_ID> \
+  --id CAIUKQLBEI4WXFECFRIH4T4CEXMKNAS34C24H53HR6CKWPRY6VCATVLJ \
   --source oracle \
   --network testnet \
   -- \
@@ -249,7 +249,7 @@ stellar contract invoke \
 
 # initialize a sample escrow (5000 USDC, 1000 per phase)
 stellar contract invoke \
-  --id <CONTRACT_ID> \
+  --id CAIUKQLBEI4WXFECFRIH4T4CEXMKNAS34C24H53HR6CKWPRY6VCATVLJ \
   --source <exporter> \
   --network testnet \
   -- \
@@ -259,7 +259,7 @@ stellar contract invoke \
 
 # enable phase 1 (does not transfer USDC, only enables for withdrawal)
 stellar contract invoke \
-  --id <CONTRACT_ID> \
+  --id CAIUKQLBEI4WXFECFRIH4T4CEXMKNAS34C24H53HR6CKWPRY6VCATVLJ \
   --source <exporter> \
   --network testnet \
   -- \
@@ -267,7 +267,7 @@ stellar contract invoke \
 
 # the farmer withdraws 500 USDC from the contract to their wallet
 stellar contract invoke \
-  --id <CONTRACT_ID> \
+  --id CAIUKQLBEI4WXFECFRIH4T4CEXMKNAS34C24H53HR6CKWPRY6VCATVLJ \
   --source oracle \
   --network testnet \
   -- \
