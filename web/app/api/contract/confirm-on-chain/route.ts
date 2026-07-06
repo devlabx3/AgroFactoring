@@ -1,7 +1,10 @@
 import { NextResponse } from "next/server";
 import { supabaseAdmin as supabase } from "@/lib/supabase";
+import { sendCopToFarmer } from "@/lib/stellar";
+import { DEFAULT_FARMER_WALLET } from "@/features/stellar/config";
 
 export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   try {
@@ -32,7 +35,7 @@ export async function POST(request: Request) {
 
     const { data: contract, error: contractError } = await supabase
       .from("contracts")
-      .select("id, crop_id, exporter_id")
+      .select("id, crop_id, exporter_id, onchain_farmer_wallet")
       .eq("id", contractId)
       .maybeSingle();
 
@@ -141,7 +144,59 @@ export async function POST(request: Request) {
       );
     }
 
-    return NextResponse.json({ success: true }, { status: 200 });
+    // Swap emulado USDC -> COP: el exportador liberó dólares (release_phase),
+    // ahora el oráculo entrega al agricultor el equivalente en pesos desde su
+    // reserva de COPD3. Es un paso off-chain independiente: si falla, la fase
+    // ya quedó liberada y confirmada, así que devolvemos éxito con un aviso en
+    // lugar de revertir el ledger.
+    let copTxHash: string | null = null;
+    let copAmount: number | null = null;
+    let copWarning: string | null = null;
+
+    if (amountReleased && amountReleased > 0) {
+      // Resolver la wallet del agricultor: la registrada on-chain en el init
+      // es la fuente de verdad; si falta, caer al perfil o al valor por defecto.
+      let farmerWallet: string | null = contract.onchain_farmer_wallet ?? null;
+      if (!farmerWallet) {
+        const { data: crop } = await supabase
+          .from("crops")
+          .select("farmer_id")
+          .eq("id", contract.crop_id)
+          .maybeSingle();
+        if (crop?.farmer_id) {
+          const { data: farmer } = await supabase
+            .from("profiles")
+            .select("wallet_address")
+            .eq("id", crop.farmer_id)
+            .maybeSingle();
+          farmerWallet = farmer?.wallet_address ?? null;
+        }
+      }
+      farmerWallet = farmerWallet || DEFAULT_FARMER_WALLET;
+
+      try {
+        const swap = await sendCopToFarmer({
+          farmerAddress: farmerWallet,
+          usdcAmount: amountReleased,
+        });
+        copTxHash = swap.txHash;
+        copAmount = swap.copAmount;
+      } catch (swapErr) {
+        copWarning =
+          swapErr instanceof Error ? swapErr.message : String(swapErr);
+        console.error("[confirm-on-chain] swap COP falló:", copWarning);
+      }
+    }
+
+    return NextResponse.json(
+      {
+        success: true,
+        cop_tx_hash: copTxHash,
+        cop_amount: copAmount,
+        cop_warning: copWarning,
+      },
+      { status: 200 }
+    );
   } catch (err) {
     return NextResponse.json(
       {
