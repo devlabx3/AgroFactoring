@@ -9,6 +9,8 @@ import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { DashboardSkeleton } from "@/features/dashboard/components/skeletons/dashboard-skeleton";
 import { apiGet, apiPost, ApiError } from "@/lib/api-client";
+import { useFreighter } from "@/features/stellar/hooks/use-freighter";
+import { DEFAULT_EXPORTER_WALLET, DEFAULT_FARMER_WALLET } from "@/features/stellar/config";
 import { User, Wallet, Envelope, Warning, SpinnerGap, Check } from "@phosphor-icons/react";
 import { motion } from "motion/react";
 
@@ -29,10 +31,13 @@ export function ProfilePage() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [freighterLoading, setFreighterLoading] = useState(false);
 
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
+
+  const freighter = useFreighter();
 
   useEffect(() => {
     apiGet<{ success: boolean; profile: ProfileData }>("/api/profile")
@@ -40,13 +45,33 @@ export function ProfilePage() {
         setProfile(res.profile);
         setFullName(res.profile.full_name ?? "");
         setEmail(res.profile.email ?? "");
-        setWalletAddress(res.profile.wallet_address ?? "");
+        setWalletAddress(
+          res.profile.wallet_address ||
+          (res.profile.role === "exporter" ? DEFAULT_EXPORTER_WALLET : DEFAULT_FARMER_WALLET)
+        );
       })
       .catch((err) => {
         setError(err instanceof ApiError ? err.message : "Error");
       })
       .finally(() => setLoading(false));
   }, []);
+
+  const handleImportFreighter = async () => {
+    setFreighterLoading(true);
+    setError(null);
+    try {
+      const addr = await freighter.connect();
+      if (addr) setWalletAddress(addr);
+    } catch (err) {
+      if (err instanceof Error && err.message === "FREIGHTER_NOT_INSTALLED") {
+        setError(t("freighterNotInstalled"));
+      } else {
+        setError(err instanceof Error ? err.message : "Error");
+      }
+    } finally {
+      setFreighterLoading(false);
+    }
+  };
 
   const handleSave = async () => {
     setSaving(true);
@@ -153,7 +178,26 @@ export function ProfilePage() {
 
           {/* Wallet address */}
           <div className="space-y-2">
-            <Label htmlFor="walletAddress">{t("walletAddress")}</Label>
+            <div className="flex items-center justify-between">
+              <Label htmlFor="walletAddress">{t("walletAddress")}</Label>
+              {profile.role === "exporter" && (
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  onClick={handleImportFreighter}
+                  disabled={freighterLoading}
+                  className="h-7 gap-1.5 text-xs"
+                >
+                  {freighterLoading ? (
+                    <SpinnerGap className="h-3 w-3 animate-spin" />
+                  ) : (
+                    <Wallet weight="duotone" className="h-3 w-3" />
+                  )}
+                  {freighterLoading ? t("freighterConnecting") : t("importFromFreighter")}
+                </Button>
+              )}
+            </div>
             <div className="relative">
               <Wallet weight="duotone" className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-text-muted" />
               <Input

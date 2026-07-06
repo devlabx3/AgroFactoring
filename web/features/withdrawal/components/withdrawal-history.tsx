@@ -61,15 +61,21 @@ export function WithdrawalHistory({ withdrawals }: WithdrawalHistoryProps) {
                 {w.account_last4 ? `****${w.account_last4}` : "—"}
               </TableCell>
               <TableCell>
-                <a
-                  href={getStellarExplorerUrl(w.tx_hash)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs text-accent hover:underline"
-                >
-                  {w.tx_hash.slice(0, 8)}...
-                  <ArrowUpRight weight="bold" className="h-3 w-3" />
-                </a>
+                {w.tx_hash.startsWith("FIAT-") ? (
+                  <span className="text-xs text-text-muted font-mono">
+                    {w.tx_hash}
+                  </span>
+                ) : (
+                  <a
+                    href={getStellarExplorerUrl(w.tx_hash)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 text-xs text-accent hover:underline"
+                  >
+                    {w.tx_hash.slice(0, 8)}...
+                    <ArrowUpRight weight="bold" className="h-3 w-3" />
+                  </a>
+                )}
               </TableCell>
               <TableCell>
                 <Badge

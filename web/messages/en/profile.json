@@ -10,6 +10,9 @@
   "walletAddress": "Wallet address",
   "walletPlaceholder": "G...",
   "walletHint": "Stellar address (starts with G). The exporter uses Freighter when signing on-chain; the farmer uses this address to receive USDC.",
+  "importFromFreighter": "Import from Freighter",
+  "freighterConnecting": "Connecting...",
+  "freighterNotInstalled": "Freighter is not installed",
   "save": "Save changes",
   "saving": "Saving...",
   "saved": "Profile updated successfully"

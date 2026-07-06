@@ -19,6 +19,7 @@ import { Warning, ArrowsClockwise } from "@phosphor-icons/react";
 export default function FarmerPage() {
   const t = useTranslations("common");
   const tDash = useTranslations("dashboard");
+  const tExp = useTranslations("dashboard.exporter");
 
   const contractsQuery = useContracts();
   const contractId = contractsQuery.data?.contracts?.[0]?.id ?? null;
@@ -106,6 +107,7 @@ export default function FarmerPage() {
         ledger={data.ledger}
         withdrawals={data.withdrawals}
         isFrozen={isFrozen}
+        contractStatus={data.contract.status}
       />
 
       {/* Phase Timeline (read-only) */}

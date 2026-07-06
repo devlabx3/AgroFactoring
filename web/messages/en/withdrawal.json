@@ -1,12 +1,14 @@
 {
   "balance": {
     "title": "Available Balance",
-    "available": "Available for withdrawal",
+    "available": "Available to convert to fiat",
+    "received": "From phase payments",
     "released": "Total Released",
     "withdrawn": "Total Withdrawn",
     "withdraw": "Withdraw Funds",
     "noFunds": "No funds available",
-    "frozenWarning": "Withdrawals disabled — contract frozen"
+    "frozenWarning": "Contract frozen — pending rescue fund resolution",
+    "rescueAvailable": "Rescue fund disbursed — these funds are yours"
   },
   "modal": {
     "title": "Withdraw Funds",
@@ -28,8 +30,8 @@
     "retry": "Retry"
   },
   "history": {
-    "title": "Withdrawal History",
-    "empty": "No withdrawals recorded",
+    "title": "Payment History",
+    "empty": "No payments recorded",
     "date": "Date",
     "amount": "Amount",
     "bank": "Bank",

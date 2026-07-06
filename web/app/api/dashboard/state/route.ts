@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { supabase, supabaseAdmin } from "@/lib/supabase";
 import { enforceAutoStop, computeTimeLeftMinutes } from "@/lib/emulator";
+import { DEFAULT_EXPORTER_WALLET, DEFAULT_FARMER_WALLET } from "@/features/stellar/config";
 
 export const dynamic = "force-dynamic";
 
@@ -63,7 +64,7 @@ export async function GET(request: NextRequest) {
       .eq("contract_id", contractId)
       .order("phase_number", { ascending: true });
 
-    const withdrawalsPromise = supabase
+    const withdrawalsPromise = supabaseAdmin
       .from("withdrawals")
       .select("id, amount, bank_name, account_last4, tx_hash, status, timestamp")
       .eq("contract_id", contractId)
@@ -86,7 +87,12 @@ export async function GET(request: NextRequest) {
         .select("id, role, username, wallet_address")
         .eq("id", resolvedFarmerId)
         .maybeSingle();
-      farmer = farmerRow;
+      if (farmerRow) {
+        farmer = {
+          ...farmerRow,
+          wallet_address: farmerRow.wallet_address || DEFAULT_FARMER_WALLET,
+        };
+      }
     }
 
     let exporter = null;
@@ -96,7 +102,12 @@ export async function GET(request: NextRequest) {
         .select("id, role, username, wallet_address")
         .eq("id", exporterId)
         .maybeSingle();
-      exporter = exporterRow;
+      if (exporterRow) {
+        exporter = {
+          ...exporterRow,
+          wallet_address: exporterRow.wallet_address || DEFAULT_EXPORTER_WALLET,
+        };
+      }
     }
 
     const timeLeftMinutes = computeTimeLeftMinutes({

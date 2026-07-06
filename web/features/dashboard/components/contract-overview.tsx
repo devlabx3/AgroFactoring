@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Progress } from "@/components/ui/progress";
-import { formatUSDC } from "@/lib/format";
+import { formatUSDC, formatWallet } from "@/lib/format";
 import { DEMO_CONTRACT_PLACEHOLDER } from "@/features/dashboard/types";
 import type { DashboardState } from "@/features/dashboard/types";
 import {
@@ -156,8 +156,8 @@ export function ContractOverview({ data, role }: ContractOverviewProps) {
             </CardHeader>
             <CardContent>
               <p className="text-lg font-semibold">{counterpart.username}</p>
-              <p className="mt-1 text-xs text-text-muted font-mono truncate">
-                {counterpart.wallet_address}
+              <p className="mt-1 text-xs text-text-muted font-mono">
+                {formatWallet(counterpart.wallet_address)}
               </p>
             </CardContent>
           </Card>,

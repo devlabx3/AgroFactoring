@@ -1,5 +1,11 @@
 // Constants that don't require the Stellar SDK
 export const STELLAR_NETWORK = "TESTNET" as const;
+
+/** Wallet por defecto del exportador cuando no tiene una configurada en su perfil */
+export const DEFAULT_EXPORTER_WALLET = "GAQHX34PBWXW2JOAMX2EFRGLJDZDKP64HDQI2QE3NAPRQTBKHNO7TFZ2";
+
+/** Wallet por defecto del agricultor cuando no tiene una configurada en su perfil */
+export const DEFAULT_FARMER_WALLET = "GAOKAL4LEARYBRQ644KYZACR2TPG72ERKRUDMS6Z6WU4537NXC6JGRF5";
 export const SOROBAN_RPC_URL = process.env.NEXT_PUBLIC_STELLAR_RPC_URL ?? "https://soroban-testnet.stellar.org";
 export const NETWORK_PASSPHRASE = "Test SDF Network ; September 2015";
 

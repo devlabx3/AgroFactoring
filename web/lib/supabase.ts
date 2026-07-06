@@ -14,3 +14,14 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     persistSession: false,
   },
 });
+
+// Service-role client for server-side writes that must bypass RLS.
+// Requires SUPABASE_SERVICE_ROLE_KEY in the environment.
+// Falls back to the anon client if the key is not configured (writes may
+// be blocked by RLS in that case).
+const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+export const supabaseAdmin = serviceRoleKey
+  ? createClient(supabaseUrl, serviceRoleKey, {
+      auth: { persistSession: false, autoRefreshToken: false },
+    })
+  : supabase;

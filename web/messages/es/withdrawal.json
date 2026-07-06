@@ -1,12 +1,14 @@
 {
   "balance": {
     "title": "Balance Disponible",
-    "available": "Disponible para retiro",
+    "available": "Disponible para convertir a fiat",
+    "received": "De pagos por fase",
     "released": "Total Liberado",
     "withdrawn": "Total Retirado",
     "withdraw": "Retirar Fondos",
     "noFunds": "Sin fondos disponibles",
-    "frozenWarning": "Retiros deshabilitados — contrato congelado"
+    "frozenWarning": "Contrato congelado — pendiente resolución del fondo de rescate",
+    "rescueAvailable": "Fondo de rescate desembolsado — estos fondos son tuyos"
   },
   "modal": {
     "title": "Retirar Fondos",
@@ -28,8 +30,8 @@
     "retry": "Reintentar"
   },
   "history": {
-    "title": "Historial de Retiros",
-    "empty": "No hay retiros registrados",
+    "title": "Historial de Pagos",
+    "empty": "No hay pagos registrados",
     "date": "Fecha",
     "amount": "Monto",
     "bank": "Banco",

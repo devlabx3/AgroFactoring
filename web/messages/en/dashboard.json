@@ -42,5 +42,22 @@
   "empty": {
     "noData": "No data available",
     "phase2": "Full dashboard in Phase 2"
+  },
+  "exporter": {
+    "walletTitle": "Exporter Wallet",
+    "walletNotSet": "No wallet configured",
+    "balance": {
+      "title": "Contract Balance",
+      "committed": "Total committed",
+      "releasedToFarmer": "Released to farmer",
+      "inEscrow": "In escrow",
+      "rescueToFarmer": "Rescue to farmer (30%)",
+      "refundToExporter": "Refund to exporter (70%)",
+      "netCost": "Net cost"
+    }
+  },
+  "farmer": {
+    "walletTitle": "Farmer Wallet",
+    "walletNotSet": "No wallet configured"
   }
 }

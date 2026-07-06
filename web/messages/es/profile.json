@@ -10,6 +10,9 @@
   "walletAddress": "Direccion de la wallet",
   "walletPlaceholder": "G...",
   "walletHint": "Direccion Stellar (empieza con G). El exportador usa Freighter al firmar on-chain; el agricultor usa esta direccion para recibir USDC.",
+  "importFromFreighter": "Importar desde Freighter",
+  "freighterConnecting": "Conectando...",
+  "freighterNotInstalled": "Freighter no esta instalado",
   "save": "Guardar cambios",
   "saving": "Guardando...",
   "saved": "Perfil actualizado correctamente"

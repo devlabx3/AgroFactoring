@@ -6,10 +6,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useContracts, useDashboard } from "@/features/dashboard/hooks/use-dashboard";
 import { DashboardSkeleton } from "@/features/dashboard/components/skeletons/dashboard-skeleton";
-import { FrozenBanner } from "@/features/dashboard/components/frozen-banner";
 import { BalanceCard } from "@/features/withdrawal/components/balance-card";
 import { WithdrawalHistory } from "@/features/withdrawal/components/withdrawal-history";
-import { isContractLocked } from "@/features/dashboard/types";
 import { Warning, ArrowsClockwise } from "@phosphor-icons/react";
 
 export default function FarmerWithdrawalPage() {
@@ -59,7 +57,6 @@ export default function FarmerWithdrawalPage() {
   }
 
   const data = dashboardQuery.data;
-  const isFrozen = isContractLocked(data.contract.status);
 
   return (
     <div className="space-y-8">
@@ -69,14 +66,12 @@ export default function FarmerWithdrawalPage() {
         <Badge variant="success">{t("roles.farmer")}</Badge>
       </div>
 
-      {isFrozen && <FrozenBanner />}
-
-      {/* Balance Card */}
+      {/* Balance Card — farmer's received funds are never frozen */}
       <BalanceCard
         contractId={contractId}
         ledger={data.ledger}
         withdrawals={data.withdrawals}
-        isFrozen={isFrozen}
+        contractStatus={data.contract.status}
       />
 
       {/* Withdrawal History */}

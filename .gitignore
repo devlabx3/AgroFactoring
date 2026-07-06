@@ -1,3 +1,6 @@
+# dependencias
+node_modules/
+
 # web: dependencias y variables de entorno
 web/node_modules/
 web/.env
@@ -10,4 +13,8 @@ Stellar/target/
 # Agro_Factoring: snapshots de tests
 Stellar/contracts/Agro_Factoring/test_snapshots/
 
+# Enviroment
 .env
+
+# Temporal
+tmp/*

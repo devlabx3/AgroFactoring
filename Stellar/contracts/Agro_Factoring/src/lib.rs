@@ -219,12 +219,22 @@ impl Contract {
             return Err(ContractError::InvalidAmount);
         }
 
-        // Update progress tracking. Funds remain in the contract custody
-        // until the farmer explicitly withdraws them.
+        // Transfer this phase's funds directly to the farmer.
+        let token = TokenClient::new(&env, &escrow.usdc_address);
+        token.transfer(&env.current_contract_address(), &escrow.farmer, &amount);
+
+        // Track the transfer: both released_amount (enabled) and
+        // withdrawn_amount (physically sent) advance together so that
+        // resolve_disaster's `remaining = total - withdrawn` always reflects
+        // what is actually still held in the contract.
         escrow.current_phase = phase_number;
         escrow.released_amount = new_released;
+        escrow.withdrawn_amount = escrow
+            .withdrawn_amount
+            .checked_add(amount)
+            .ok_or(ContractError::InvalidAmount)?;
 
-        // If everything has been enabled, mark the escrow as Completed.
+        // If all phases paid out, mark the escrow as Completed.
         if new_released == escrow.total_amount {
             escrow.status = EscrowStatus::Completed;
         }

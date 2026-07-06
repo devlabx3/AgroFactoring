@@ -26,19 +26,19 @@ interface SidebarProps {
 }
 
 const exporterNavItems = [
-  { key: "profile", href: "/exporter/profile", icon: UserCircle },
   { key: "dashboard", href: "/exporter", icon: SquaresFour },
   { key: "contract", href: "/exporter/contract", icon: FileText },
   { key: "emulator", href: "/exporter/emulator", icon: Pulse },
   { key: "data", href: "/exporter/data", icon: Database },
+  { key: "profile", href: "/exporter/profile", icon: UserCircle },
 ];
 
 const farmerNavItems = [
-  { key: "profile", href: "/farmer/profile", icon: UserCircle },
   { key: "dashboard", href: "/farmer", icon: SquaresFour },
   { key: "myCrop", href: "/farmer/crop", icon: Plant },
   { key: "withdrawal", href: "/farmer/withdrawal", icon: Wallet },
   { key: "data", href: "/farmer/data", icon: Database },
+  { key: "profile", href: "/farmer/profile", icon: UserCircle },
 ];
 
 export function Sidebar({ isMobileOpen, onMobileClose }: SidebarProps) {

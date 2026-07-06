@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { supabase, supabaseAdmin } from "@/lib/supabase";
 import {
   rpc,
   networkPassphrase,
@@ -100,6 +100,7 @@ export async function POST(request: Request) {
     const simulation = await rpc.simulateTransaction(transaction);
 
     if (StellarSdk.rpc.Api.isSimulationError(simulation)) {
+      console.error("[resolve-disaster] simulation error:", simulation.error);
       return NextResponse.json(
         {
           success: false,
@@ -107,6 +108,7 @@ export async function POST(request: Request) {
             simulation.error,
             "resolve_disaster"
           ),
+          detail: simulation.error,
         },
         { status: 400 }
       );
@@ -186,25 +188,27 @@ export async function POST(request: Request) {
     );
     const rescueAmount = rescueStroops / STROOPS_PER_UNIT;
 
-    const { error: updateError } = await supabase
+    const { error: updateError } = await supabaseAdmin
       .from("contracts")
       .update({ status: "resolved" })
       .eq("id", contractId);
 
     if (updateError) {
+      console.error("[resolve-disaster] contracts update failed:", updateError);
       return NextResponse.json(
         {
-          success: true,
+          success: false,
+          error: "On-chain exitoso pero fallo al actualizar el contrato",
+          detail: updateError.message,
           tx_hash: txHash,
-          warning: "On-chain exitoso pero fallo al actualizar Supabase",
         },
-        { status: 200 }
+        { status: 500 }
       );
     }
 
     // Record the rescue payout in the ledger.
     if (rescueAmount > 0) {
-      await supabase.from("phase_ledger").insert({
+      await supabaseAdmin.from("phase_ledger").insert({
         contract_id: contractId,
         phase_number: 0,
         tx_hash: txHash,

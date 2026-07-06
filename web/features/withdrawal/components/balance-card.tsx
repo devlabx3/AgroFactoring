@@ -9,32 +9,34 @@ import { formatUSDC } from "@/lib/format";
 import { useWithdraw } from "../hooks/use-withdrawals";
 import { WithdrawalModal } from "./withdrawal-modal";
 import type { WithdrawalResponse } from "../types";
-import type { LedgerEntry, WithdrawalEntry } from "@/features/dashboard/types";
-import { Wallet, ArrowLineDown, Warning } from "@phosphor-icons/react";
+import type { ContractStatus, LedgerEntry, WithdrawalEntry } from "@/features/dashboard/types";
+import { Wallet, ArrowLineDown, ShieldCheck } from "@phosphor-icons/react";
 import { toast } from "sonner";
 
 interface BalanceCardProps {
   contractId: string;
   ledger: LedgerEntry[];
   withdrawals: WithdrawalEntry[];
-  isFrozen: boolean;
+  contractStatus: ContractStatus;
 }
 
 export function BalanceCard({
   contractId,
   ledger,
   withdrawals,
-  isFrozen,
+  contractStatus,
 }: BalanceCardProps) {
   const t = useTranslations("withdrawal");
   const [showModal, setShowModal] = useState(false);
 
+  // totalReleased = USDC already sent to the farmer's Stellar wallet (per phase)
   const totalReleased = ledger.reduce((sum, e) => sum + e.amount_released, 0);
-  const totalWithdrawn = withdrawals
+  // totalConverted = USDC the farmer has explicitly declared as used/converted to fiat
+  const totalConverted = withdrawals
     .filter((w) => w.status === "completed")
     .reduce((sum, w) => sum + w.amount, 0);
-  const availableBalance = Math.max(0, totalReleased - totalWithdrawn);
-  const withdrawnPercent = totalReleased > 0 ? (totalWithdrawn / totalReleased) * 100 : 0;
+  const availableToConvert = Math.max(0, totalReleased - totalConverted);
+  const convertedPercent = totalReleased > 0 ? (totalConverted / totalReleased) * 100 : 0;
 
   const withdrawMutation = useWithdraw();
 
@@ -52,7 +54,7 @@ export function BalanceCard({
   };
 
   const handleOpenModal = () => {
-    if (availableBalance <= 0) {
+    if (availableToConvert <= 0) {
       toast.error(t("errors.noFunds"));
       return;
     }
@@ -69,45 +71,45 @@ export function BalanceCard({
           <Wallet weight="duotone" className="h-4 w-4 text-text-muted" />
         </CardHeader>
         <CardContent className="space-y-4">
-          {/* Available balance */}
+          {/* Available to convert */}
           <div>
             <p className="text-3xl font-bold tabular-nums text-accent">
-              {formatUSDC(availableBalance)}
+              {formatUSDC(availableToConvert)}
             </p>
             <p className="mt-1 text-xs text-text-muted">{t("balance.available")}</p>
           </div>
 
-          {/* Released vs Withdrawn */}
+          {/* Received vs Converted */}
           <div className="space-y-2">
             <div className="flex justify-between text-xs">
               <span className="text-text-secondary">{t("balance.withdrawn")}</span>
               <span className="tabular-nums font-medium">
-                {formatUSDC(totalWithdrawn)}
+                {formatUSDC(totalConverted)}
               </span>
             </div>
-            <Progress value={withdrawnPercent} className="h-2" />
+            <Progress value={convertedPercent} className="h-2" />
             <div className="flex justify-between text-xs text-text-muted">
               <span>{t("balance.released")}</span>
               <span className="tabular-nums">{formatUSDC(totalReleased)}</span>
             </div>
           </div>
 
-          {/* Frozen warning */}
-          {isFrozen && (
-            <div className="flex items-center gap-2 rounded-md bg-danger/10 p-2 text-xs text-danger">
-              <Warning weight="duotone" className="h-3.5 w-3.5 shrink-0" />
-              {t("balance.frozenWarning")}
+          {/* Positive notice when rescue fund was disbursed */}
+          {contractStatus === "resolved" && (
+            <div className="flex items-center gap-2 rounded-md bg-success/10 p-2 text-xs text-success">
+              <ShieldCheck weight="duotone" className="h-3.5 w-3.5 shrink-0" />
+              {t("balance.rescueAvailable")}
             </div>
           )}
 
-          {/* Withdraw button */}
+          {/* Withdraw button — never blocked by contract frozen state */}
           <Button
             className="w-full gap-2"
             onClick={handleOpenModal}
-            disabled={availableBalance <= 0 || isFrozen}
+            disabled={availableToConvert <= 0}
           >
             <ArrowLineDown weight="duotone" className="h-4 w-4" />
-            {availableBalance <= 0 ? t("balance.noFunds") : t("balance.withdraw")}
+            {availableToConvert <= 0 ? t("balance.noFunds") : t("balance.withdraw")}
           </Button>
         </CardContent>
       </Card>
@@ -115,7 +117,7 @@ export function BalanceCard({
       <WithdrawalModal
         open={showModal}
         onClose={() => setShowModal(false)}
-        availableBalance={availableBalance}
+        availableBalance={availableToConvert}
         onWithdraw={handleWithdraw}
       />
     </>

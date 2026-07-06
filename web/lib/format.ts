@@ -29,6 +29,11 @@ export function formatTxHash(hash: string): string {
   return `${hash.slice(0, 8)}...${hash.slice(-4)}`;
 }
 
+export function formatWallet(address: string): string {
+  if (!address || address.length < 12) return address;
+  return `${address.slice(0, 6)}...${address.slice(-4)}`;
+}
+
 export function getStellarExplorerUrl(hash: string): string {
   return `https://stellar.expert/explorer/testnet/tx/${hash}`;
 }

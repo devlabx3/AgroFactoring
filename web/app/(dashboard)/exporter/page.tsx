@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+
 import { useContracts, useDashboard } from "@/features/dashboard/hooks/use-dashboard";
 import { ContractOverview } from "@/features/dashboard/components/contract-overview";
 import { PhaseTimeline } from "@/features/dashboard/components/phase-timeline";
@@ -19,6 +20,7 @@ import {
   useReleasePhase,
 } from "@/features/dashboard/hooks/use-contract-actions";
 import { DEMO_CONTRACT_PLACEHOLDER, isContractLocked } from "@/features/dashboard/types";
+import { ExporterBalanceCard } from "@/features/dashboard/components/exporter-balance-card";
 import Image from "next/image";
 import { Warning, ArrowsClockwise, RocketLaunch, PaperPlaneTilt } from "@phosphor-icons/react";
 
@@ -135,6 +137,13 @@ export default function ExporterPage() {
 
       {/* Metrics Grid */}
       <ContractOverview data={data} role="exporter" />
+
+      {/* Balance summary */}
+      <ExporterBalanceCard
+        totalAmount={contract.total_amount}
+        ledger={data.ledger}
+        contractStatus={contract.status}
+      />
 
       {/* Phase Timeline */}
       <Card className={isFrozen ? "border-danger/20" : undefined}>

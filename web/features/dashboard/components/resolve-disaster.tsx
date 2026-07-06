@@ -22,9 +22,10 @@ import { toast } from "sonner";
 interface ResolveDisasterProps {
   contractId: string;
   remaining: number;
+  onSuccess?: () => void;
 }
 
-export function ResolveDisaster({ contractId, remaining }: ResolveDisasterProps) {
+export function ResolveDisaster({ contractId, remaining, onSuccess }: ResolveDisasterProps) {
   const t = useTranslations("disaster");
   const queryClient = useQueryClient();
 
@@ -72,6 +73,7 @@ export function ResolveDisaster({ contractId, remaining }: ResolveDisasterProps)
     onSuccess: () => {
       setShowModal(false);
       toast.success(t("resolve.success"));
+      onSuccess?.();
       queryClient.invalidateQueries({ queryKey: ["dashboard"] });
       queryClient.invalidateQueries({ queryKey: ["contracts"] });
     },

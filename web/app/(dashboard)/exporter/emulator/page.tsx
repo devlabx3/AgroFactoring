@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations } from "next-intl";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Badge } from "@/components/ui/badge";
@@ -113,6 +113,23 @@ export default function ExporterEmulatorPage() {
   const contractId = contractsQuery.data?.contracts?.[0]?.id ?? null;
   const dashboardQuery = useDashboard(contractId);
 
+  // Hooks must come before any conditional returns (Rules of Hooks).
+  // Track whether ResolveDisaster has been used in this cycle.
+  // Resets automatically when the contract goes back to "active" (after reset).
+  const [resolveUsed, setResolveUsed] = useState(false);
+  const prevStatusRef = useRef<string | null>(null);
+  const contractStatus = dashboardQuery.data?.contract?.status ?? null;
+  useEffect(() => {
+    if (
+      prevStatusRef.current !== null &&
+      prevStatusRef.current !== "active" &&
+      contractStatus === "active"
+    ) {
+      setResolveUsed(false);
+    }
+    if (contractStatus !== null) prevStatusRef.current = contractStatus;
+  }, [contractStatus]);
+
   if (contractsQuery.isLoading || dashboardQuery.isLoading) {
     return <DashboardSkeleton />;
   }
@@ -192,8 +209,12 @@ export default function ExporterEmulatorPage() {
         {/* Resolve only while strictly "frozen" — once resolved the contract
             stays visually locked (isFrozen) but the resolve button disappears
             so it can't be invoked twice. */}
-        {contract.status === "frozen" && (
-          <ResolveDisaster contractId={contractId} remaining={remaining} />
+        {contract.status === "frozen" && !resolveUsed && (
+          <ResolveDisaster
+            contractId={contractId}
+            remaining={remaining}
+            onSuccess={() => setResolveUsed(true)}
+          />
         )}
         <ResetButton contractId={contractId} />
       </div>

@@ -2,7 +2,7 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
-  "packageManager": "npm@11.16.0",
+  "packageManager": "pnpm@11.1.1",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -48,10 +48,12 @@
     "tailwindcss": "^4",
     "typescript": "^5"
   },
-  "allowScripts": {
-    "@parcel/watcher@2.5.6": true,
-    "@swc/core@1.15.43": true,
-    "sharp@0.34.5": true,
-    "unrs-resolver@1.12.2": true
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@parcel/watcher",
+      "@swc/core",
+      "sharp",
+      "unrs-resolver"
+    ]
   }
 }

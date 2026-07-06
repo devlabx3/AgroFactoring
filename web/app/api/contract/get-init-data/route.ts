@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
-import { supabase } from "@/lib/supabase";
+import { supabaseAdmin as supabase } from "@/lib/supabase";
+import { DEFAULT_EXPORTER_WALLET, DEFAULT_FARMER_WALLET } from "@/features/stellar/config";
 
 export const dynamic = "force-dynamic";
 
@@ -54,15 +55,16 @@ export async function POST(request: Request) {
         { status: 500 }
       );
     }
-    if (!farmer || !farmer.wallet_address) {
+    if (!farmer) {
       return NextResponse.json(
         { success: false, error: "Agricultor sin wallet_address" },
         { status: 404 }
       );
     }
+    const farmerWallet = farmer.wallet_address || DEFAULT_FARMER_WALLET;
 
     // Basic Stellar public key format: G + 55 base32 chars = 56 total
-    if (!/^G[A-Z2-7]{55}$/.test(farmer.wallet_address)) {
+    if (!/^G[A-Z2-7]{55}$/.test(farmerWallet)) {
       return NextResponse.json(
         {
           success: false,
@@ -75,7 +77,7 @@ export async function POST(request: Request) {
     // Reject placeholder wallets (e.g. GAAAAAAA...) — they burn funds on
     // resolve_disaster / release_phase. Detect via a run of 6+ 'A's right
     // after the leading 'G', which never appears in real ed25519 keys.
-    if (/^GA{6,}/.test(farmer.wallet_address)) {
+    if (/^GA{6,}/.test(farmerWallet)) {
       return NextResponse.json(
         {
           success: false,
@@ -102,12 +104,12 @@ export async function POST(request: Request) {
       );
     }
 
-    const exporterWallet = exporterProfile?.wallet_address ?? null;
+    const exporterWallet = exporterProfile?.wallet_address || DEFAULT_EXPORTER_WALLET;
     if (
       exporterWallet &&
       /^G[A-Z2-7]{55}$/.test(exporterWallet) &&
       !/^GA{6,}/.test(exporterWallet) &&
-      exporterWallet === farmer.wallet_address
+      exporterWallet === farmerWallet
     ) {
       return NextResponse.json(
         {
@@ -187,7 +189,7 @@ export async function POST(request: Request) {
       {
         success: true,
         contract_id: contractIdDb,
-        farmer_address: farmer.wallet_address,
+        farmer_address: farmerWallet,
         crop_id_num: crop.crop_id_num,
         total_amount_stroops: toStroops(crop.total_funding_requested).toString(),
         phase_amount_stroops: toStroops(phase1.amount_requested).toString(),
