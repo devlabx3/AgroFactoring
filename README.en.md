@@ -17,7 +17,7 @@
 | Exporter | `exportador` | `expo2024` |
 | Farmer | `agricultor` | `agro2024` |
 
-**Application:** <https://agro-factoring.vercel.app/>
+**Application:** <https://agro-factoring-web.vercel.app/>
 
 **Explainer video:** <https://www.youtube.com/watch?v=rHV3MJyaP30>
 
