@@ -10,7 +10,6 @@ import {
   Pulse,
   Database,
   Plant,
-  Wallet,
   UserCircle,
   SignOut,
   X,
@@ -36,7 +35,6 @@ const exporterNavItems = [
 const farmerNavItems = [
   { key: "dashboard", href: "/farmer", icon: SquaresFour },
   { key: "myCrop", href: "/farmer/crop", icon: Plant },
-  { key: "withdrawal", href: "/farmer/withdrawal", icon: Wallet },
   { key: "data", href: "/farmer/data", icon: Database },
   { key: "profile", href: "/farmer/profile", icon: UserCircle },
 ];

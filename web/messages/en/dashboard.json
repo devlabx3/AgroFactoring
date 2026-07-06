@@ -58,6 +58,11 @@
   },
   "farmer": {
     "walletTitle": "Farmer Wallet",
-    "walletNotSet": "No wallet configured"
+    "walletNotSet": "No wallet configured",
+    "received": {
+      "title": "Received in your wallet",
+      "subtitle": "Pesos released directly by the exporter",
+      "rate": "Rate: 1 USDC = {rate} COP"
+    }
   }
 }

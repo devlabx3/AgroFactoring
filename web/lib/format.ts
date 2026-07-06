@@ -9,6 +9,17 @@ export function formatUSDC(amount: number): string {
   return usdFormatter.format(amount);
 }
 
+const copFormatter = new Intl.NumberFormat("es-CO", {
+  style: "currency",
+  currency: "COP",
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0,
+});
+
+export function formatCOP(amount: number): string {
+  return copFormatter.format(amount);
+}
+
 const dateFormatOptions: Intl.DateTimeFormatOptions = {
   year: "numeric",
   month: "short",

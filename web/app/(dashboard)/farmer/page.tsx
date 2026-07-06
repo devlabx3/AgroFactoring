@@ -10,8 +10,7 @@ import { PhaseTimeline } from "@/features/dashboard/components/phase-timeline";
 import { PhaseLedger } from "@/features/dashboard/components/phase-ledger";
 import { DashboardSkeleton } from "@/features/dashboard/components/skeletons/dashboard-skeleton";
 import { FrozenBanner } from "@/features/dashboard/components/frozen-banner";
-import { BalanceCard } from "@/features/withdrawal/components/balance-card";
-import { WithdrawalHistory } from "@/features/withdrawal/components/withdrawal-history";
+import { ReceivedCard } from "@/features/dashboard/components/received-card";
 import { isContractLocked } from "@/features/dashboard/types";
 import Image from "next/image";
 import { Warning, ArrowsClockwise } from "@phosphor-icons/react";
@@ -101,14 +100,8 @@ export default function FarmerPage() {
       {/* Metrics Grid */}
       <ContractOverview data={data} role="farmer" />
 
-      {/* Withdrawal Balance */}
-      <BalanceCard
-        contractId={contractId}
-        ledger={data.ledger}
-        withdrawals={data.withdrawals}
-        isFrozen={isFrozen}
-        contractStatus={data.contract.status}
-      />
+      {/* Fondos recibidos en pesos (solo lectura — sin retiro) */}
+      <ReceivedCard ledger={data.ledger} />
 
       {/* Phase Timeline (read-only) */}
       <Card className={isFrozen ? "border-danger/20" : undefined}>
@@ -124,9 +117,6 @@ export default function FarmerPage() {
 
       {/* Phase Ledger (read-only) */}
       <PhaseLedger ledger={data.ledger} phases={data.phases} />
-
-      {/* Withdrawal History */}
-      <WithdrawalHistory withdrawals={data.withdrawals} />
     </div>
   );
 }
